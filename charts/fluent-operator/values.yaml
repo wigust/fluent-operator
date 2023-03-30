@@ -89,6 +89,10 @@ fluentbit:
 #     path:
 #       procfs: /host/proc
 #       sysfs: /host/sys
+    systemd:
+      systemdFilter:
+      - _SYSTEMD_UNIT={{ .Values.containerRuntime }}.service
+      - _SYSTEMD_UNIT=kubelet.service
 
   #Configure the output plugin parameter in FluentBit.
   #You can set enable to true to output logs to the specified location.

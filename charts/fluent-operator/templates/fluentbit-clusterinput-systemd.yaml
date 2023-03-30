@@ -13,6 +13,9 @@ spec:
     db: /fluent-bit/tail/systemd.db
     dbSync: Normal
     systemdFilter:
-      - _SYSTEMD_UNIT={{ .Values.containerRuntime }}.service
-      - _SYSTEMD_UNIT=kubelet.service
+      {{- if .Values.fluentbit.input.systemd.systemdFilter -}}
+      {{- range .Values.fluentbit.input.systemd.systemdFilter }}
+      - {{ toYaml . }}
+      {{- end }}
+      {{- end }}
 {{- end }}
