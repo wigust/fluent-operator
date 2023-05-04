@@ -55,6 +55,13 @@ fluentbit:
   volumes: []
   # Pod volumes to mount into the container's filesystem.
   volumesMounts: []
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/edge
+                operator: DoesNotExist
 
   # Remove the above empty volumes and volumesMounts, and then set volumes and volumesMounts as below if you want to collect node exporter metrics 
 # volumes:
